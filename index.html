@@ -12,18 +12,12 @@
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="stylesheet" type="text/css" href="lib/css/pesquisa.css">
     <link rel="stylesheet" type="text/css" href="lib/css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/background.css">
     <link rel="stylesheet" type="text/css" href="lib/css/reset.css">
     <meta charset="utf-8">
-    
 
+    <!-- Descrição da Aba rotatória -->
     <title>- SI1 2017.1 - LAB 2 -</title>
-
-
-  </head>
-
-<body ng-controller="seriesController">
-
-    <!-- Descrição da Aba do navegador rotatória -->
     <script> var repeat=1 
     var title=document.title
     var leng=title.length
@@ -42,13 +36,25 @@
     if (document.title)
     titlemove()
     </script>
-  
+    <style>
+body {
+    background-image: url("background-main.png");
+
+}
+</style>
+
+  </head>
+
+<body ng-controller="seriesController">
+   
+
   <!-- Abas internas -->
   <ul class="nav nav-tabs">
     <li><a data-toggle="tab" href="#pesquisa">Pesquisar</a></li>
     <li class="active"><a data-toggle="tab" href="#series">Minhas séries</a></li>
     <li><a data-toggle="tab" href="#watchlist">WatchList</a></li>
   </ul>
+
 
 
     <!-- Pagina inicial das pesquisas -->
@@ -113,7 +119,7 @@
                 </div>
                 <p><b>Sinopse:</b></p>
                 <p>{{serie.Plot}}</p>
-                <p><b>Gênero:</b> {{serie.Genre}}</p>
+
                 <p><b>Classificação etária:</b> {{serie.Rated}}</p>
                 <p><b>Média IMDB:</b> {{serie.imdbRating}}</p>
                 <p ng-show="serie.nota != undefined"><b>Minha nota para esta série:</b> {{serie.nota}}</p>

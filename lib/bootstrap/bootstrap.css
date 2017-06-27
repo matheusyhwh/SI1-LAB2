@@ -1087,6 +1087,7 @@ body {
   line-height: 1.42857143;
   color: #333;
   background-color: #454545;
+
 }
 input,
 button,
@@ -1102,7 +1103,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #23527c;
+  color: #222;
   text-decoration: underline;
 }
 a:focus {
@@ -1147,7 +1148,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #fff;
 }
 .sr-only {
   position: absolute;
