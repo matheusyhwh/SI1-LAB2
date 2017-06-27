@@ -1,0 +1,29 @@
+ul.nav li{
+  width: 33%;
+  text-align: center;
+}
+
+ul.nav li a{
+  color: black;}
+
+ul.nav li a:hover{
+  border-radius: 6px;
+  color: white;
+  background-color: #aaa;
+}
+
+#titulo{
+  font-family: "Lucida Console";
+  font-size: 50px;
+  text-align: center;
+}
+
+#sizeThumbnail{
+  width: 245px;
+  height: auto;
+}
+
+#tamanhoImagem{
+  width: 235px;
+  height: 340px;
+}

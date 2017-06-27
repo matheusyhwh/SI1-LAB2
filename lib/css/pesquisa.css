@@ -1,0 +1,29 @@
+#errorMessage{
+  margin-top: 100px;
+}
+
+#botoes{
+  width: 100%;
+  margin-top: 5px;
+}
+
+#pesquisa{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+   text-align: center;
+   align-content: center;
+
+}
+
+#botaoPesquisar{
+  margin-top: 5px;
+  margin-bottom: 7px;  
+  width: 35%;
+  text-align: center;
+  align-content: center;
+  margin-left: 34%;
+  margin-right: 34%;
+
+
+}

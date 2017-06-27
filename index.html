@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html ng-app="seriesList">
+  <head>
+
+    <script src="lib/angular.js"></script>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="js/listController.js"></script>
+    <script src="js/imdbAPI.js"></script>
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="lib/css/style.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/pesquisa.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/perfil.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/reset.css">
+    <meta charset="utf-8">
+    
+
+    <title>- SI1 2017.1 - LAB 2 -</title>
+
+
+  </head>
+
+<body ng-controller="seriesController">
+
+    <!-- Descrição da Aba do navegador rotatória -->
+    <script> var repeat=1 
+    var title=document.title
+    var leng=title.length
+    var start=1
+    function titlemove() {
+    titl=title.substring(start, leng) + title.substring(0, start)
+    document.title=titl
+    start++
+    if (start==leng+1) {
+    start=0
+    if (repeat==0)
+    return
+    }
+    setTimeout("titlemove()",300) 
+    }
+    if (document.title)
+    titlemove()
+    </script>
+  
+  <!-- Abas internas -->
+  <ul class="nav nav-tabs">
+    <li><a data-toggle="tab" href="#pesquisa">Pesquisar</a></li>
+    <li class="active"><a data-toggle="tab" href="#series">Minhas séries</a></li>
+    <li><a data-toggle="tab" href="#watchlist">WatchList</a></li>
+  </ul>
+
+
+    <!-- Pagina inicial das pesquisas -->
+
+  <div class="tab-content">
+
+    <div id = "pesquisa" class = "tab-pane">
+        <h3 id="titulo">{{"Pesquisar Séries"}}</h3>
+        <input id="pesquisa" class="form-control" type="text" placeholder="Que série você deseja buscar?" ng-model="serieDesejada">
+        <button type="submit" id="botaoPesquisar" class = "btn btn-primary btn-danger" ng-click="getSeries(serieDesejada); pesquisa()">Pesquisar</button>
+        <h2 ng-show="pesquisa()" id="errorMessage">Ops! Parece que não temos essa série! Certifique-se que digitou o nome da série corretamente.</h2>
+
+      <!--Pesquisar-->
+
+      <div ng-repeat= "serie in series">
+        <div class="col-lg-4">
+            <div id="sizeThumbnail" class="thumbnail grow">
+              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
+              <div id="botoes">
+                <button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao seu Perfil</button>
+                <button class="btn btn-success btn-block" ng-click="addToWatchlist(serie)">Adicionar a Watchlist</button>
+              </div>
+            </div>
+        </div>
+      </div><!-- Fim Pesquisa -->
+    </div> <!-- Fin da pagina inicial das pesquisas -->
+
+
+    <!--Minhas Series-->
+
+    <div id="series" class="tab-pane fade in active">
+      <h2 id="titulo">Suas Séries</h2>
+      <div ng-repeat= "serie in mySeries" >
+      <div id="imagens" class="col-md-3">
+        <div id="sizeThumbnail" class="thumbnail grow">
+          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
+          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+          <div id="botoesPerfil">
+            <ng-button class="btn btn-danger btn-block" ng-click="deleteSerie(serie)">Remover</ng-button>
+            <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal{{$index}}">Informações</button>
+          </div>
+        </div>
+      </div>
+
+        <!--Modal da série-->
+
+        <div id="myModal{{$index}}" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title">{{serie.Title}}</h4>
+              </div>
+
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col">
+                     <img class="img-responsive" id="imagemModal" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}"">
+                     <img class="img-responsive" id="imagemModal" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+                  </div>
+                </div>
+                <p><b>Sinopse:</b></p>
+                <p>{{serie.Plot}}</p>
+                <p><b>Gênero:</b> {{serie.Genre}}</p>
+                <p><b>Classificação etária:</b> {{serie.Rated}}</p>
+                <p><b>Média IMDB:</b> {{serie.imdbRating}}</p>
+                <p ng-show="serie.nota != undefined"><b>Minha nota para esta série:</b> {{serie.nota}}</p>
+                <p ng-show="serie.ultimoEpi != undefined"><b>Último episódio assistido desta série:</b> {{serie.ultimoEpi}}</p>
+                <div id="formModal" class="input-group">
+                <input ng-model="minhaNota" class="form-control" placeholder="Adicionar nota">
+                  <div class="input-group-btn">
+                    <button type="submit" ng-click="setMyGrade(minhaNota, serie)" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                </div>
+                <div id="formModal" class ="input-group">
+                  <input ng-model="ultimoEpi" class="form-control" placeholder="Adicionar último episódio assistido">
+                  <div class="input-group-btn">
+                    <button type="submit" ng-click="setLastEp(ultimoEpi, serie)" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div> <!--Fim Modal-->
+      </div>
+    </div> <!--Fim Minhas Series-->
+
+
+  <!-- WatchList-->
+
+  <div id="watchlist" class="tab-pane">
+    <h2 id="titulo">Sua WatchList</h2>
+    <md-list-item ng-repeat= "serie in watchList" >
+    <div id="imagens" class="col-lg-3">
+      <div id="sizeThumbnail" class="thumbnail grow">
+        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
+        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+        <div id="botoesPerfil">
+          <ng-button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao Perfil</ng-button>
+        </div>
+      </div>
+    </div>
+    </md-list-item>
+  </div> <!--Fim watchList-->
+
+  </div>
+
+</body>
+</html>
