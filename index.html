@@ -53,6 +53,7 @@ body {
     <li><a data-toggle="tab" href="#pesquisa">Pesquisar</a></li>
     <li class="active"><a data-toggle="tab" href="#series">Minhas séries</a></li>
     <li><a data-toggle="tab" href="#watchlist">WatchList</a></li>
+    <li><a data-toggle="tab" href="#sobre">Sobre</a></li>
   </ul>
 
 
@@ -72,7 +73,7 @@ body {
       <div ng-repeat= "serie in series">
         <div class="col-lg-4">
             <div id="sizeThumbnail" class="thumbnail grow">
-              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
               <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
               <div id="botoes">
                 <button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao seu Perfil</button>
@@ -87,12 +88,12 @@ body {
     <!--Minhas Series-->
 
     <div id="series" class="tab-pane fade in active">
-      <h2 id="titulo">Suas Séries</h2>
+      <h2 id="titulo">Sua lista de Séries</h2>
       <div ng-repeat= "serie in mySeries" >
       <div id="imagens" class="col-md-3">
         <div id="sizeThumbnail" class="thumbnail grow">
           <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
-          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
           <div id="botoesPerfil">
             <ng-button class="btn btn-danger btn-block" ng-click="deleteSerie(serie)">Remover</ng-button>
             <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal{{$index}}">Informações</button>
@@ -114,7 +115,7 @@ body {
                 <div class="row">
                   <div class="col">
                      <img class="img-responsive" id="imagemModal" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}"">
-                     <img class="img-responsive" id="imagemModal" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+                     <img class="img-responsive" id="imagemModal" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
                   </div>
                 </div>
                 <p><b>Sinopse:</b></p>
@@ -154,7 +155,7 @@ body {
     <div id="imagens" class="col-lg-3">
       <div id="sizeThumbnail" class="thumbnail grow">
         <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
-        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="http://ia.media-imdb.com/images/G/01/imdb/images/nopicture/large/film-184890147._CB522736516_.png">
+        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
         <div id="botoesPerfil">
           <ng-button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao Perfil</ng-button>
         </div>
@@ -163,6 +164,12 @@ body {
     </md-list-item>
   </div> <!--Fim watchList-->
 
+  <div id = "sobre" class = "tab-pane">
+  <h3 id="titulo">{{"Informações e Créditos"}}</h3>
+  <h2>
+    <img src="info.png"></img>
+  </h2>
+  </div>
   </div>
 
 </body>

@@ -34,7 +34,7 @@ li a:hover {
 #sizeThumbnail{
   width: 245px;
   height: auto;
-  background-color: #ccc;
+  background-color: #2F333D; border-color: #21252B; 
 }
 
 #tamanhoImagem{
