@@ -8,7 +8,7 @@
     <script src="js/imdbAPI.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="lib/img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="lib/css/style.css">
     <link rel="stylesheet" type="text/css" href="lib/css/pesquisa.css">
     <link rel="stylesheet" type="text/css" href="lib/css/perfil.css">
@@ -38,7 +38,7 @@
     </script>
     <style>
 body {
-    background-image: url("background-main.png");
+    background-image: url("lib/img/background-main.png");
 
 }
 </style>
@@ -73,7 +73,7 @@ body {
       <div ng-repeat= "serie in series">
         <div class="col-lg-4">
             <div id="sizeThumbnail" class="thumbnail grow">
-              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
+              <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="lib/img/nothumbnail.png">
               <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
               <div id="botoes">
                 <button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao seu Perfil</button>
@@ -93,7 +93,7 @@ body {
       <div id="imagens" class="col-md-3">
         <div id="sizeThumbnail" class="thumbnail grow">
           <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
-          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
+          <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="lib/img/nothumbnail.png">
           <div id="botoesPerfil">
             <ng-button class="btn btn-danger btn-block" ng-click="deleteSerie(serie)">Remover</ng-button>
             <button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#myModal{{$index}}">Informações</button>
@@ -115,7 +115,7 @@ body {
                 <div class="row">
                   <div class="col">
                      <img class="img-responsive" id="imagemModal" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}"">
-                     <img class="img-responsive" id="imagemModal" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
+                     <img class="img-responsive" id="imagemModal" ng-if="hasNoThumbnail(serie)" src="lib/img/nothumbnail.png">
                   </div>
                 </div>
                 <p><b>Sinopse:</b></p>
@@ -155,7 +155,7 @@ body {
     <div id="imagens" class="col-lg-3">
       <div id="sizeThumbnail" class="thumbnail grow">
         <img title="{{serie.Title}}" id="tamanhoImagem" ng-if=" ! hasNoThumbnail(serie)" src={{serie.Poster}}>
-        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="nothumbnail.png">
+        <img title="{{serie.Title}}" id="tamanhoImagem" ng-if="hasNoThumbnail(serie)" src="lib/img/nothumbnail.png">
         <div id="botoesPerfil">
           <ng-button class="btn btn-primary btn-block" ng-click="addToProfile(serie)">Adicionar ao Perfil</ng-button>
         </div>
@@ -167,7 +167,7 @@ body {
   <div id = "sobre" class = "tab-pane">
   <h3 id="titulo">{{"Informações e Créditos"}}</h3>
   <h2>
-    <img src="info.png"></img>
+    <img src="lib/img/info.png"></img>
   </h2>
   </div>
   </div>
