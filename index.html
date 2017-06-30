@@ -18,7 +18,7 @@
 
     <!-- Descrição da Aba rotatória -->
     <title>- SI1 2017.1 - LAB 2 -</title>
-    <script> var repeat=1 
+    <script> var repeat=1
     var title=document.title
     var leng=title.length
     var start=1
@@ -31,7 +31,7 @@
     if (repeat==0)
     return
     }
-    setTimeout("titlemove()",300) 
+    setTimeout("titlemove()",300)
     }
     if (document.title)
     titlemove()
@@ -46,7 +46,7 @@ body {
   </head>
 
 <body ng-controller="seriesController">
-   
+
 
   <!-- Abas internas -->
   <ul class="nav nav-tabs">
@@ -166,11 +166,13 @@ body {
 
   <div id = "sobre" class = "tab-pane">
   <h3 id="titulo">{{"Informações e Créditos"}}</h3>
-  <h2>
-    <img src="lib/img/info.png"></img>
-  </h2>
+  <div id="infoECreditos">
+    <h2>
+      <CENTER><img src="lib/img/info.png"></CENTER>
+    </h2>
   </div>
   </div>
+</div>
 
 </body>
 </html>

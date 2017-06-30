@@ -4,4 +4,5 @@
 
 body{
     color: #222; font-family: "Lucida Console";
+    src: url('fonts/lucidaConsole.ttf');
 }

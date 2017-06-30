@@ -26,6 +26,7 @@ li a:hover {
 
 #titulo{
   font-family: "Lucida Console";
+  src: url('fonts/lucidaConsole.ttf');
   font-size: 50px;
   text-align: center;
 
@@ -34,7 +35,7 @@ li a:hover {
 #sizeThumbnail{
   width: 245px;
   height: auto;
-  background-color: #2F333D; border-color: #21252B; 
+  background-color: #2F333D; border-color: #21252B;
 }
 
 #tamanhoImagem{
